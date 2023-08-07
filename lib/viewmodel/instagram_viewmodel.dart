@@ -53,8 +53,8 @@ class InstagramViewModel extends ChangeNotifier {
 
   int get characterCount => _characterCount;
 
-  void updateCharacterCount(String content) {
-    _characterCount = content.length;
+  void updateCharacterCount(String icerik) {
+    _characterCount = icerik.length;
     notifyListeners();
   }
 
