@@ -22,18 +22,13 @@ class _SteppersState extends State<Steppers> {
     "Enthusiatic",
     "Humorous",
     "Professional",
-    "Describe a tone",
-    "Your brand's tone"
   ];
   String selectTone = "Conversational";
-  List<String> listLength = [
-    "Short (~800 words)",
-    "Medium (~1,500 words)",
-    "Long (~3,000 words)",
-  ];
-  String selectLength = "Medium (~1,500 words)";
+  bool selectedDrafts = false;
 
-  bool _switchValue = true;
+  int selectedContainerIndex = -1;
+  bool isChecked = false;
+
 //tag eklenmesi
   void _addInterest(String interest) {
     setState(() {
@@ -163,108 +158,139 @@ class _SteppersState extends State<Steppers> {
           ),
         ),
         SizedBox(height: 20),
-        Text('Length'),
-        SizedBox(height: 20),
-        Container(
-          height: 50,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            border: Border.all(width: 1, color: Colors.grey),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: DropdownButton(
-            focusColor: Colors.grey,
-            elevation: 0,
-            underline: Container(),
-            isExpanded: true,
-            value: selectLength,
-            onChanged: (value) {
-              setState(() {
-                selectLength = value!.toString();
-              });
-            },
-            items: listLength.map((itemone) {
-              return DropdownMenuItem(
-                  value: itemone,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: Text(itemone),
-                  ));
-            }).toList(),
-          ),
-        ),
-        SizedBox(height: 20),
-        Row(children: [
-          CupertinoSwitch(
-            activeColor: Color.fromARGB(255, 76, 97, 220),
-            value: _switchValue,
-            onChanged: (value) {
-              setState(() {
-                _switchValue = value;
-              });
-            },
-          ),
-          SizedBox(width: 20),
-          Text('Write your own title'),
-        ]),
         SizedBox(
           height: 20,
         ),
-        ExpansionTile(
-          expandedCrossAxisAlignment: CrossAxisAlignment.start,
-          title: Text('More Expansion',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.indigo,
-              )),
-          children: [
-            Text('Point of view'), //overlay
-            //ne olduğunu bilmediğim bişey.
-
-            Row(
-              children: [
-                Text(
-                  'Describe your audience', //overlay
-                ),
-              ],
-            ),
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              selectedDrafts = !selectedDrafts;
+            });
+          },
+          child: Row(
+            children: [
+              Text('More options', style: TextStyle()),
+              IconButton(
+                onPressed: () {},
+                icon: selectedDrafts
+                    ? Icon(Icons.keyboard_arrow_down)
+                    : Icon(Icons.keyboard_arrow_up),
               ),
-            ),
-            SizedBox(height: 20),
-            Row(
-              children: [
-                Text(
-                  'Describe your brand', //overlay
+            ],
+          ),
+        ),
+        AnimatedContainer(
+          color: Colors.white,
+          width: double.infinity,
+          height: selectedDrafts ? MediaQuery.of(context).size.height * 0.3 : 0,
+          duration: const Duration(milliseconds: 300),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(children: [
+                Expanded(
+                  child: Container(
+                    height: 50,
+                    child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                          selectedContainerIndex == 0
+                              ? Color.fromARGB(255, 217, 221, 229)
+                              : Colors.grey,
+                        )),
+                        onPressed: () {
+                          setState(() {
+                            selectedContainerIndex = 0;
+                            isChecked = true;
+                          });
+                        },
+                        child: Text(
+                          'First Person',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.black),
+                        )),
+                  ),
                 ),
-              ],
-            ),
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-              ),
-              keyboardType: TextInputType.multiline,
-              maxLines: 2,
-            ),
-            SizedBox(height: 20),
-            Row(
-              children: [
-                Text(
-                  'Describe your product or service', //overlay
+                Expanded(
+                  child: Container(
+                    height: 50,
+                    child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                          selectedContainerIndex == 1
+                              ? Color.fromARGB(255, 217, 221, 229)
+                              : Colors.grey,
+                        )),
+                        onPressed: () {
+                          setState(() {
+                            selectedContainerIndex = 1;
+                            isChecked = true;
+                          });
+                        },
+                        child: Text(
+                          'Second Person',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.black),
+                        )),
+                  ),
                 ),
-              ],
-            ),
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
+                Expanded(
+                  child: Container(
+                    height: 50,
+                    child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                          selectedContainerIndex == 2
+                              ? Color.fromARGB(255, 217, 221, 229)
+                              : Colors.grey,
+                        )),
+                        onPressed: () {
+                          setState(() {
+                            selectedContainerIndex = 2;
+                            isChecked = true;
+                          });
+                        },
+                        child: Text(
+                          'Third Person',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.black),
+                        )),
+                  ),
+                )
+              ]),
+              SizedBox(
+                height: 10,
               ),
-              keyboardType: TextInputType.multiline,
-              maxLines: 2,
-            ),
-            SizedBox(height: 20),
-          ],
+              Text('Describe your audience'),
+              TextField(
+                onChanged: (value) {
+                  setState(() {});
+                },
+                controller: _topicController,
+                autofocus: false,
+                minLines: 1,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Color.fromARGB(
+                    255,
+                    255,
+                    255,
+                    255,
+                  ),
+                  labelStyle: TextStyle(fontSize: 13),
+                  hintText: 'The Rock Company',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 20,
         ),
         Container(
             width: double.infinity,

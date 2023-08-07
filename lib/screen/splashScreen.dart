@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hypotenuse/screen/signUpScreen.dart';
+import 'package:hypotenuse/screen/pages/signUpScreen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

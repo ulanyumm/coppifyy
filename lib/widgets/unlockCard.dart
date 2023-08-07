@@ -9,7 +9,6 @@ class UnlockCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 180,
         width: double.infinity,
         decoration: BoxDecoration(
             border: Border.all(color: Colors.blueAccent),
@@ -23,7 +22,7 @@ class UnlockCard extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Row(children: [
                 Icon(
-                  Icons.timer,
+                  Icons.bolt_outlined,
                   color: Color.fromARGB(255, 76, 97, 220),
                 ),
                 Text('Speed up your writing with AI',
@@ -55,13 +54,18 @@ class UnlockCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 35, right: 20),
-              child: SizedBox(
-                  height: 35,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                      onPressed: null, child: Text('Unlock now'))),
-            )
+                padding: const EdgeInsets.only(left: 35, right: 20),
+                child: SizedBox(
+                    height: 35,
+                    width: double.infinity,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromARGB(255, 216, 211, 211),
+                        ),
+                        onPressed: () {},
+                        child: Text('Upgrade now',
+                            style: TextStyle(color: Colors.indigo)))))
           ],
         ));
   }

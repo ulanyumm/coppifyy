@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20">
+	<title>marketingAngles-svg</title>
+	<defs>
+		<image width="64" height="64" id="img1" href="data:image/svg+xml;base64,PHN2ZyB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmlld0JveD0iMCAwIDMyIDMyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iZ3JvdXAtaG92ZXI6c2NhbGUtMTEwIHRyYW5zaXRpb24tYWxsIGR1cmF0aW9uLTMwMCBlYXNlLW91dCI+PGcgZmlsbD0iIzM0NzQzNCI+ICZndDs8cGF0aCBkPSJNMjIuMTY3IDE5LjY2N2gtMTBjLS4yNzYgMC0uNS0uMjI0LS41LS41cy4yMjQtLjUuNS0uNWgxMGMuMjM2IDAgLjQ0LS4xNjYuNDg5LS4zOTdsMS4zMzMtNi4zMzNjLjAzMS0uMTQ3LS4wMDYtLjMwMS0uMTAxLS40MThzLS4yMzgtLjE4NS0uMzg4LS4xODVIMTIuMjM5bC0uMjUzLTEuMjA0Yy0uMTc3LS44NC0uOTI4LTEuNDUyLTEuNzg2LTEuNDU1bC0xLjY5OC0uMDA4SDguNWMtLjI3NSAwLS40OTkuMjIyLS41LjQ5OHMuMjIyLjUuNDk4LjUwMmwxLjY5OC4wMDdjLjM5LjAwMi43MzEuMjguODEyLjY2MWwuMzM3IDEuNiAxLjIwNiA1LjczaC0uMzg0Yy0uODI3IDAtMS41LjY3My0xLjUgMS41cy42NzMgMS41IDEuNSAxLjVoMTBjLjI3NiAwIC41LS4yMjQuNS0uNXMtLjIyNC0uNDk4LS41LS40OTh6IiBmaWxsPSIjMzQ3NDM0Ij48L3BhdGg+PGNpcmNsZSBjeD0iMTUiIGN5PSIyMi4zMzMiIHI9IjEiIGZpbGw9IiMzNDc0MzQiPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjIwLjMzMyIgY3k9IjIyLjMzMyIgcj0iMSIgZmlsbD0iIzM0NzQzNCI+PC9jaXJjbGU+PC9nPjwvc3ZnPg=="/>
+	</defs>
+	<style>
+	</style>
+	<use id="ecommerceProductDescriptions" href="#img1" transform="matrix(.597,0,0,.597,-9.088,-9.088)"/>
+</svg>
