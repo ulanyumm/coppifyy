@@ -11,10 +11,10 @@ class NoContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height / 2,
+      height: MediaQuery.of(context).size.height / 3,
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         SvgPicture.asset(
-          'assets/images/icons/drafts.svg',
+          'assets/images/icons/noContent.svg',
         ),
         Text('No content yet', style: UIHelper.getAnaBaslikTextStyle()),
         Text(

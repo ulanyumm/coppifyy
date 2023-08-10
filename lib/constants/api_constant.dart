@@ -7,3 +7,9 @@ String logoutUrl = "$baseUrl/auth/logout";
 
 // Instagram
 String instaPostUrl = "$baseUrl/insta";
+
+//Ask Any Thing
+String askAnyThingPostUrl = "$baseUrl/ask";
+
+//Rewrite Content
+String rewriteContentPostUrl = "$baseUrl/rewriting";

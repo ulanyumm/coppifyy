@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hypotenuse/constants/ui_helper.dart';
+import 'package:hypotenuse/viewmodel/facebookAds_viewmodel.dart';
 import 'package:hypotenuse/widgets/drawerMenu.dart';
+import 'package:hypotenuse/widgets/not_content.dart';
+import 'package:provider/provider.dart';
 
 class FacebookAdsScreen extends StatefulWidget {
   const FacebookAdsScreen({super.key});
@@ -12,59 +15,13 @@ class FacebookAdsScreen extends StatefulWidget {
 }
 
 class _FacebookAdsScreenState extends State<FacebookAdsScreen> {
-  TextEditingController _topicController = TextEditingController();
-  TextEditingController _topicController2 = TextEditingController();
-  TextEditingController _topicController3 = TextEditingController();
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
-
-  TextEditingController _keywordsController = TextEditingController();
-  List<String> facebookKeywords = [];
-  void _addInterest(String interest) {
-    setState(() {
-      facebookKeywords.add(interest);
-    });
-  }
-
-//tag silinmesi
-  void _removeInterest(String interest) {
-    setState(() {
-      facebookKeywords.remove(interest);
-    });
-  }
-//Tone eklenmesi
-
-  List<String> listTone = [
-    "Conversational",
-    "Enthusiatic",
-    "Humorous",
-    "Professional",
-  ];
-  String selectTone = "Conversational";
-
-  bool selectedAnything = false;
-  bool selectedDrafts = false;
-
-  GlobalKey _key = GlobalKey();
-
-  @override
-  void initState() {
-    super.initState();
-    facebookKeywords = [];
-    _keywordsController = TextEditingController();
-    _topicController = TextEditingController();
-  }
-
-  void dispose() {
-    _topicController.dispose();
-    _keywordsController.dispose();
-    super.dispose();
-  }
+  FacebookAdsViewModel viewModel = FacebookAdsViewModel();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          key: _scaffoldKey,
+          key: viewModel.scaffoldKey,
           drawer: DrawerMenu(),
           floatingActionButton: FloatingActionButton(
             child:
@@ -72,12 +29,13 @@ class _FacebookAdsScreenState extends State<FacebookAdsScreen> {
             backgroundColor: Colors.transparent,
             elevation: 0,
             onPressed: () {
-              _scaffoldKey.currentState!.openDrawer();
+              viewModel.scaffoldKey.currentState!.openDrawer();
             },
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
           body: Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 24.0, vertical: 44.0),
               child: SingleChildScrollView(
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,15 +60,12 @@ class _FacebookAdsScreenState extends State<FacebookAdsScreen> {
                       height: 5,
                     ),
                     Form(
-                      key: _key,
+                      key: viewModel.formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           TextFormField(
-                            onChanged: (value) {
-                              setState(() {});
-                            },
-                            controller: _topicController,
+                            controller: viewModel.productController,
                             autofocus: false,
                             minLines: 2,
                             decoration: InputDecoration(
@@ -118,12 +73,7 @@ class _FacebookAdsScreenState extends State<FacebookAdsScreen> {
                               contentPadding: EdgeInsets.all(10),
                               hintText: 'floaty floral blue maxi dress',
                               filled: true,
-                              fillColor: Color.fromARGB(
-                                255,
-                                255,
-                                255,
-                                255,
-                              ),
+                              fillColor: UIHelper.fillColor(),
                               labelStyle: TextStyle(fontSize: 13),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
@@ -150,21 +100,46 @@ class _FacebookAdsScreenState extends State<FacebookAdsScreen> {
                                 suffixIcon: IconButton(
                                   icon: const Icon(Icons.add_circle_outline),
                                   onPressed: () {
-                                    _addInterest(
-                                        _keywordsController.text.trim());
-                                    _keywordsController.clear();
+                                    final instaViewModel =
+                                        Provider.of<FacebookAdsViewModel>(
+                                            context,
+                                            listen: false);
+                                    if (viewModel
+                                        .keywordsController.text.isNotEmpty) {
+                                      instaViewModel.addItemToList(
+                                          viewModel.keywordsController.text,
+                                          context);
+                                      viewModel.keywordsController.text = "";
+                                    } else {
+                                      Provider.of<FacebookAdsViewModel>(context,
+                                              listen: false)
+                                          .checkAvailable(false);
+                                      viewModel.keywordsController.text = "";
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text("Değer giriniz"),
+                                        ),
+                                      );
+                                    }
                                   },
                                 ),
                               ),
-                              controller: _keywordsController,
+                              controller: viewModel.keywordsController,
                             ),
                           ),
                           Wrap(
                             spacing: 8,
-                            children: facebookKeywords.map((interest) {
+                            children: Provider.of<FacebookAdsViewModel>(context)
+                                .facebookAdsKeywordsList
+                                .map((interest) {
                               return Chip(
                                 label: Text(interest),
-                                onDeleted: () => _removeInterest(interest),
+                                onDeleted: () {
+                                  Provider.of<FacebookAdsViewModel>(context,
+                                          listen: false)
+                                      .removeInterest(interest);
+                                },
                               );
                             }).toList(),
                           ),
@@ -178,20 +153,20 @@ class _FacebookAdsScreenState extends State<FacebookAdsScreen> {
                             width: double.infinity,
                             decoration: BoxDecoration(
                               border: Border.all(width: 1, color: Colors.grey),
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(8),
                             ),
                             child: DropdownButton(
                               focusColor: Colors.grey,
                               elevation: 0,
                               underline: Container(),
                               isExpanded: true,
-                              value: selectTone,
+                              value: viewModel.selectedTone,
                               onChanged: (value) {
-                                setState(() {
-                                  selectTone = value!.toString();
-                                });
+                                Provider.of<FacebookAdsViewModel>(context)
+                                    .facebookAdsTone(value.toString());
                               },
-                              items: listTone.map((itemone) {
+                              items: viewModel.facebookAdsToneMap.keys
+                                  .map((itemone) {
                                 return DropdownMenuItem(
                                     value: itemone,
                                     child: Padding(
@@ -205,164 +180,148 @@ class _FacebookAdsScreenState extends State<FacebookAdsScreen> {
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.04,
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                selectedDrafts = !selectedDrafts;
-                              });
-                            },
-                            child: Row(
-                              children: [
-                                Text('More options', style: TextStyle()),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: selectedDrafts
-                                      ? Icon(Icons.keyboard_arrow_down)
-                                      : Icon(Icons.keyboard_arrow_up),
-                                ),
-                              ],
-                            ),
+                          Row(
+                            children: [
+                              InkWell(
+                                  onTap: () {
+                                    Provider.of<FacebookAdsViewModel>(context,
+                                            listen: false)
+                                        .animateContainer(context);
+                                  },
+                                  child:
+                                      Text('More options', style: TextStyle())),
+                              IconButton(
+                                onPressed: () {
+                                  Provider.of<FacebookAdsViewModel>(context,
+                                          listen: false)
+                                      .animateContainer(context);
+                                },
+                                icon: Provider.of<FacebookAdsViewModel>(context,
+                                            listen: false)
+                                        .selectedDrafts
+                                    ? Icon(Icons.keyboard_arrow_down)
+                                    : Icon(Icons.keyboard_arrow_up),
+                              ),
+                            ],
                           ),
                           AnimatedContainer(
                             color: Colors.white,
                             width: double.infinity,
-                            height: selectedDrafts
+                            height: Provider.of<FacebookAdsViewModel>(context,
+                                        listen: false)
+                                    .selectedDrafts
                                 ? MediaQuery.of(context).size.height * 0.2
                                 : 0,
                             duration: const Duration(milliseconds: 300),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Target Audience',
-                                  style: UIHelper.getBaslikTextStyle(),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                TextField(
-                                  onChanged: (value) {
-                                    setState(() {});
-                                  },
-                                  controller: _topicController2,
-                                  autofocus: false,
-                                  minLines: 1,
-                                  decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.all(10),
-                                    isDense: true,
-                                    filled: true,
-                                    fillColor: Color.fromARGB(
-                                      255,
-                                      255,
-                                      255,
-                                      255,
-                                    ),
-                                    labelStyle: TextStyle(fontSize: 13),
-                                    hintText: 'spring wedding guests',
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Target Audience',
+                                    style: UIHelper.getBaslikTextStyle(),
                                   ),
-                                  keyboardType: TextInputType.multiline,
-                                  maxLines: null,
-                                ),
-                                SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.016,
-                                ),
-                                Text(
-                                  'Brand',
-                                  style: UIHelper.getBaslikTextStyle(),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                TextField(
-                                  onChanged: (value) {
-                                    setState(() {});
-                                  },
-                                  controller: _topicController3,
-                                  autofocus: false,
-                                  minLines: 1,
-                                  decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.all(10),
-                                    isDense: true,
-                                    filled: true,
-                                    fillColor: Color.fromARGB(
-                                      255,
-                                      255,
-                                      255,
-                                      255,
-                                    ),
-                                    labelStyle: TextStyle(fontSize: 13),
-                                    hintText: '',
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
+                                  SizedBox(
+                                    height: 5,
                                   ),
-                                  keyboardType: TextInputType.multiline,
-                                  maxLines: null,
-                                ),
-                              ],
+                                  TextField(
+                                    controller:
+                                        viewModel.targetAudienceController,
+                                    autofocus: false,
+                                    minLines: 1,
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.all(10),
+                                      isDense: true,
+                                      filled: true,
+                                      fillColor: UIHelper.fillColor(),
+                                      labelStyle: TextStyle(fontSize: 13),
+                                      hintText: 'spring wedding guests',
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    ),
+                                    keyboardType: TextInputType.multiline,
+                                    maxLines: null,
+                                  ),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.016,
+                                  ),
+                                  Text(
+                                    'Brand',
+                                    style: UIHelper.getBaslikTextStyle(),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  TextField(
+                                    controller: viewModel.brandController,
+                                    autofocus: false,
+                                    minLines: 1,
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.all(10),
+                                      isDense: true,
+                                      filled: true,
+                                      fillColor: UIHelper.fillColor(),
+                                      labelStyle: TextStyle(fontSize: 13),
+                                      hintText: '',
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    ),
+                                    keyboardType: TextInputType.multiline,
+                                    maxLines: null,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.03,
                           ),
-                          Container(
-                              width: double.infinity,
-                              height: MediaQuery.of(context).size.height * 0.03,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
+                          SizedBox(
+                            width: double.infinity,
+                            height: MediaQuery.of(context).size.height * 0.03,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: UIHelper.activeButtonColor(),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8))),
+                              onPressed: viewModel
+                                          .productController.text.isNotEmpty &&
+                                      Provider.of<FacebookAdsViewModel>(context)
+                                          .facebookAdsKeywordsList
+                                          .isNotEmpty
+                                  ? () {
+                                      //post işlemleri
+                                    }
+                                  : null,
+                              child: Selector<FacebookAdsViewModel, bool>(
+                                builder: (context, isLoading, child) {
+                                  return isLoading
+                                      ? CircularProgressIndicator()
+                                      : Text(
+                                          'Generate',
+                                          style: UIHelper.getButtonTextStyle(),
+                                        );
+                                },
+                                selector: (context, state) => state.isLoading,
                               ),
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        _topicController.text.isEmpty
-                                            ? Color.fromARGB(255, 76, 97, 220)
-                                            : Color.fromARGB(255, 76, 97, 220),
-                                  ),
-                                  onPressed: _topicController.text.isEmpty ||
-                                          _keywordsController.text.isEmpty
-                                      ? null
-                                      : () {},
-                                  child: Text('Generate'))),
+                            ),
+                          ),
                         ],
                       ),
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.03,
                     ),
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: double.infinity,
-                            height: MediaQuery.of(context).size.height / 2,
-                            child: Center(
-                              child: Column(children: [
-                                SizedBox(
-                                  height: 60,
-                                ),
-                                SvgPicture.asset(
-                                    'assets/images/icons/drafts.svg',
-                                    height: 120),
-                                Text('No content yet',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.bold)),
-                                Text(
-                                  'Describe your topic to our AI \n to start writing some \n compelling copy',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 17),
-                                ),
-                              ]),
-                            ),
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.03,
-                          ),
-                        ])
+                    Consumer<FacebookAdsViewModel>(
+                      builder: (context, state, child) {
+                        return state.isDataAvailable
+                            ? Container()
+                            : NoContent();
+                      },
+                    ),
                   ])))),
     );
   }

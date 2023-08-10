@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hypotenuse/constants/ui_helper.dart';
 import 'package:hypotenuse/viewmodel/instagram_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -58,12 +59,7 @@ class _CaptionEditWidgetState extends State<CaptionEditWidget> {
               isDense: true,
               contentPadding: EdgeInsets.all(10),
               filled: true,
-              fillColor: Color.fromARGB(
-                255,
-                255,
-                255,
-                255,
-              ),
+              fillColor: UIHelper.fillColor(),
               labelStyle: TextStyle(fontSize: 13),
               border: OutlineInputBorder(
                 borderSide: BorderSide(

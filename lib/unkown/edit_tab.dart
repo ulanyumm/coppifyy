@@ -1,9 +1,9 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hypotenuse/widgets/captions_edit.dart';
-import 'package:hypotenuse/widgets/captions_preview.dart';
-import 'package:hypotenuse/widgets/editTabBarView.dart';
+import 'package:hypotenuse/widgets/answers/instagramPost/captions_edit.dart';
+import 'package:hypotenuse/widgets/answers/instagramPost/captions_preview.dart';
+import 'package:hypotenuse/unkown/editTabBarView.dart';
 
 class EditorTabBar extends StatefulWidget {
   const EditorTabBar({super.key});
@@ -62,7 +62,7 @@ class _EditorTabBarState extends State<EditorTabBar> {
                       Container(
                         color: Color.fromARGB(255, 203, 199, 199),
                         width: 15,
-                        child: Center(child: Text('4')),
+                        child: Center(child: Text('5')),
                       ),
                     ],
                   ),

@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hypotenuse/constants/ui_helper.dart';
 import 'package:hypotenuse/widgets/drawerMenu.dart';
+import 'package:hypotenuse/widgets/not_content.dart';
 import 'package:provider/provider.dart';
 import '../../../viewmodel/instagram_viewmodel.dart';
-import '../../../widgets/captions_edit.dart';
-import '../../../widgets/captions_preview.dart';
+import '../../../widgets/answers/instagramPost/captions_edit.dart';
+import '../../../widgets/answers/instagramPost/captions_preview.dart';
 
 class InstagramCaptions extends StatefulWidget {
   const InstagramCaptions({super.key});
@@ -18,38 +19,8 @@ class InstagramCaptions extends StatefulWidget {
 class _InstagramCaptionsState extends State<InstagramCaptions> {
   InstagramViewModel viewModel = InstagramViewModel();
 
-  /* void _addInterest(String interest) {
-    setState(() {
-      viewModel.instagramKeywordsList.add(interest);
-    });
-  }
-
-//tag silinmesi
-  void _removeInterest(String interest) {
-    setState(() {
-      viewModel.instagramKeywordsList.remove(interest);
-    });
-  } */
-
-  @override
-  void initState() {
-    super.initState();
-    viewModel.instagramKeywordsList = [];
-    viewModel.instagramKeywordsController = TextEditingController();
-    viewModel.instagramProduct = TextEditingController();
-  }
-
-  void dispose() {
-    viewModel.instagramProduct.dispose();
-    viewModel.instagramKeywordsController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    String selectedToneId =
-        viewModel.instagramToneMap[viewModel.selectedTone] ?? '1';
-
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -96,13 +67,7 @@ class _InstagramCaptionsState extends State<InstagramCaptions> {
                     children: [
                       TextFormField(
                         maxLength: 800,
-                        onChanged: (value) {
-                          final textViewModel = Provider.of<InstagramViewModel>(
-                              context,
-                              listen: false);
-
-                          textViewModel.updateText(value);
-                        },
+                        onChanged: (value) {},
                         controller: viewModel.instagramProduct,
                         autofocus: false,
                         minLines: 1,
@@ -125,14 +90,6 @@ class _InstagramCaptionsState extends State<InstagramCaptions> {
                         keyboardType: TextInputType.multiline,
                         maxLines: null,
                       ),
-                      Consumer<InstagramViewModel>(
-                        builder: (context, state, child) {
-                          return Text(
-                            state.text,
-                            style: TextStyle(color: Colors.black),
-                          );
-                        },
-                      ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
@@ -144,21 +101,31 @@ class _InstagramCaptionsState extends State<InstagramCaptions> {
                           decoration: InputDecoration(
                             isDense: true,
                             contentPadding: EdgeInsets.all(10),
-                            border: OutlineInputBorder(),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
                             hintText:
                                 'luxco specializes in airy, wedding-ready otfits at a',
                             suffixIcon: IconButton(
-                              icon: const Icon(Icons.add_circle_outline),
+                              icon: Icon(Icons.add_circle_outline),
                               onPressed: () {
-                                String item =
-                                    viewModel.instagramKeywordsController.text;
-
+                                final instaViewModel =
+                                    Provider.of<InstagramViewModel>(context,
+                                        listen: false);
                                 if (viewModel.instagramKeywordsController.text
                                     .isNotEmpty) {
+                                  instaViewModel.addItemToList(
+                                      viewModel
+                                          .instagramKeywordsController.text,
+                                      context);
+                                  viewModel.instagramKeywordsController.text =
+                                      "";
+                                } else {
                                   Provider.of<InstagramViewModel>(context,
                                           listen: false)
-                                      .addItem(item, context);
-                                } else {
+                                      .checkAvailable(false);
+                                  viewModel.instagramKeywordsController.text =
+                                      "";
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text("Değer giriniz"),
@@ -169,17 +136,19 @@ class _InstagramCaptionsState extends State<InstagramCaptions> {
                             ),
                           ),
                           controller: viewModel.instagramKeywordsController,
-                          onChanged: (value) {},
                         ),
                       ),
                       Wrap(
                         spacing: 8,
-                        children: viewModel.instagramKeywordsList.map((item) {
+                        children: Provider.of<InstagramViewModel>(context)
+                            .instagramKeywordsList
+                            .map((item) {
                           return Chip(
                             label: Text(item),
                             onDeleted: () {
-                              if (viewModel.instagramKeywordsController.text
-                                  .isNotEmpty) {}
+                              Provider.of<InstagramViewModel>(context,
+                                      listen: false)
+                                  .removeInterest(item);
                             },
                           );
                         }).toList(),
@@ -194,7 +163,7 @@ class _InstagramCaptionsState extends State<InstagramCaptions> {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           border: Border.all(width: 1, color: Colors.grey),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(8),
                         ),
                         child: DropdownButton(
                           focusColor: Colors.grey,
@@ -203,11 +172,9 @@ class _InstagramCaptionsState extends State<InstagramCaptions> {
                           isExpanded: true,
                           value: viewModel.selectedTone,
                           onChanged: (value) {
-                            setState(() {
-                              viewModel.selectedTone = value!;
-                              selectedToneId =
-                                  viewModel.instagramToneMap[value] ?? '1';
-                            });
+                            Provider.of<InstagramViewModel>(context,
+                                    listen: false)
+                                .instaTone(value.toString());
                           },
                           items: viewModel.instagramToneMap.keys.map((toneKey) {
                             return DropdownMenuItem(
@@ -226,21 +193,21 @@ class _InstagramCaptionsState extends State<InstagramCaptions> {
                         children: [
                           InkWell(
                             onTap: () {
-                              setState(() {
-                                viewModel.selectedDrafts =
-                                    !viewModel.selectedDrafts;
-                              });
+                              Provider.of<InstagramViewModel>(context,
+                                      listen: false)
+                                  .animateContainer(context);
                             },
                             child: Text('More options', style: TextStyle()),
                           ),
                           IconButton(
                             onPressed: () {
-                              setState(() {
-                                viewModel.selectedDrafts =
-                                    !viewModel.selectedDrafts;
-                              });
+                              Provider.of<InstagramViewModel>(context,
+                                      listen: false)
+                                  .animateContainer(context);
                             },
-                            icon: viewModel.selectedDrafts
+                            icon: Provider.of<InstagramViewModel>(context,
+                                        listen: false)
+                                    .selectedDrafts
                                 ? Icon(Icons.keyboard_arrow_down)
                                 : Icon(Icons.keyboard_arrow_up),
                           ),
@@ -249,7 +216,9 @@ class _InstagramCaptionsState extends State<InstagramCaptions> {
                       AnimatedContainer(
                         color: Colors.white,
                         width: double.infinity,
-                        height: viewModel.selectedDrafts
+                        height: Provider.of<InstagramViewModel>(context,
+                                    listen: false)
+                                .selectedDrafts
                             ? MediaQuery.of(context).size.height * 0.15
                             : 0,
                         duration: Duration(milliseconds: 400),
@@ -330,24 +299,37 @@ class _InstagramCaptionsState extends State<InstagramCaptions> {
                         height: MediaQuery.of(context).size.height * 0.035,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: Color.fromARGB(255, 76, 97, 220),
+                              backgroundColor: UIHelper.activeButtonColor(),
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0))),
-                          onPressed: () {
-                            Provider.of<InstagramViewModel>(context,
-                                    listen: false)
-                                .instaPost(
-                              product: viewModel.instagramProduct.text,
-                              keywords:
-                                  "viewModel.instagramKeywordsList.toString()",
-                              toneId: "3",
-                              audience: viewModel.instagramAudience.text,
-                              brand: viewModel.instagramBrand.text,
-                            );
-                          },
-                          child: Text(
-                            'Generate',
-                            style: UIHelper.getButtonTextStyle(),
+                                  borderRadius: BorderRadius.circular(8))),
+                          onPressed: viewModel
+                                      .instagramProduct.text.isNotEmpty &&
+                                  Provider.of<InstagramViewModel>(context)
+                                      .instagramKeywordsList
+                                      .isNotEmpty
+                              ? () {
+                                  Provider.of<InstagramViewModel>(context,
+                                          listen: false)
+                                      .instaPost(
+                                    product: viewModel.instagramProduct.text,
+                                    keywords: viewModel.instagramKeywordsList
+                                        .toString(),
+                                    toneId: viewModel.selectedToneId,
+                                    audience: viewModel.instagramAudience.text,
+                                    brand: viewModel.instagramBrand.text,
+                                  );
+                                }
+                              : null,
+                          child: Selector<InstagramViewModel, bool>(
+                            builder: (context, isLoading, child) {
+                              return isLoading
+                                  ? CircularProgressIndicator()
+                                  : Text(
+                                      'Generate',
+                                      style: UIHelper.getButtonTextStyle(),
+                                    );
+                            },
+                            selector: (context, state) => state.isLoading,
                           ),
                         ),
                       ),
@@ -359,10 +341,9 @@ class _InstagramCaptionsState extends State<InstagramCaptions> {
                 ),
                 Consumer<InstagramViewModel>(
                   builder: (context, state, child) {
-                    print("data : ${state.instaModel.brand}");
                     return state.isDataAvailable
                         ? tabViews(context, state)
-                        : Text("Data yok");
+                        : NoContent();
                   },
                 ),
               ],
@@ -427,7 +408,7 @@ class _InstagramCaptionsState extends State<InstagramCaptions> {
                             borderRadius: BorderRadius.circular(5)),
                         height: 20,
                         width: 25,
-                        child: Center(child: Text('4')),
+                        child: Center(child: Text('5')),
                       ),
                     ],
                   ),
@@ -459,7 +440,10 @@ class _InstagramCaptionsState extends State<InstagramCaptions> {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 20.0),
-                    child: CaptionPreviewWidget(),
+                    child: CaptionPreviewWidget(
+                      previewContents: viewmodel
+                          .instaModel.data!.instaCaptions![index].instaCaption!,
+                    ),
                   );
                 },
               ),

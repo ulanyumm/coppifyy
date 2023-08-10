@@ -69,4 +69,8 @@ class UIHelper {
   static double textfieldYukseklik() {
     return 55;
   }
+
+  static Color fillColor() {
+    return Color.fromARGB(255, 255, 255, 255);
+  }
 }

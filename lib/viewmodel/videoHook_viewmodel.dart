@@ -3,44 +3,44 @@ import 'package:hypotenuse/service/instagram_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../model/instagram_post_model.dart';
 
-class InstagramViewModel extends ChangeNotifier {
+class VideoHookViewModel extends ChangeNotifier {
   InstagramService service = InstagramService();
-  TextEditingController instagramProduct = TextEditingController();
-  TextEditingController instagramAudience = TextEditingController();
-  TextEditingController instagramBrand = TextEditingController();
-  TextEditingController instagramKeywordsController = TextEditingController();
+  TextEditingController videoTopicController = TextEditingController();
+  TextEditingController videoHookAudience = TextEditingController();
+  TextEditingController videoHookDetailBrand = TextEditingController();
+  TextEditingController videoHookKeywordsController = TextEditingController();
   TextEditingController captionsEditController = TextEditingController();
   bool selectedDrafts = false;
   bool isGenerateAvailable = false;
   bool isCaptionChanged = false;
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
-  GlobalKey instagramPostFormkey = GlobalKey();
-  List<String> instagramKeywordsList = [];
+  GlobalKey videoHookPostFormkey = GlobalKey();
+  List<String> videoHookKeywordsList = [];
   bool isLoading = false;
   bool isDataLoaded = false;
   bool isDataAvailable = false;
   String selectedToneId = "1";
   String selectedTone = "Conversational";
-  Map<String, String> instagramToneMap = {
+  Map<String, String> videoHookToneMap = {
     "Conversational": '1',
     "Enthusiatic": '2',
     "Humorous": '3',
     "Professional": '4',
   };
 
-  void instaTone(String tone) {
+  void videoHookTone(String tone) {
     selectedTone = tone;
-    selectedToneId = instagramToneMap[tone] ?? '1';
+    selectedToneId = videoHookToneMap[tone] ?? '1';
     notifyListeners();
   }
 
   void addItemToList(String etiket, BuildContext context) {
-    instagramKeywordsList.add(etiket);
+    videoHookKeywordsList.add(etiket);
     notifyListeners();
   }
 
   void removeInterest(String etiket) {
-    instagramKeywordsList.remove(etiket);
+    videoHookKeywordsList.remove(etiket);
     notifyListeners();
   }
 
@@ -49,7 +49,6 @@ class InstagramViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  InstagramPostModel instaModel = InstagramPostModel();
   String _text = '';
   String get text => _text;
 
@@ -68,39 +67,5 @@ class InstagramViewModel extends ChangeNotifier {
   checkAvailable(bool available) {
     isGenerateAvailable = available;
     notifyListeners();
-  }
-
-  Future instaPost({
-    required String product,
-    required String keywords,
-    required String toneId,
-    String? audience,
-    String? brand,
-  }) async {
-    isLoading = true;
-    notifyListeners();
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String token = prefs.getString("token")!;
-    final response = await service.instaPost(
-      token,
-      {
-        "product": product,
-        "keywords": keywords,
-        "tone_id": toneId,
-        "audience": audience ?? "",
-        "brand": brand ?? "",
-      },
-    );
-
-    if (response.result!) {
-      // Work
-      instaModel = response;
-      isDataAvailable = true;
-      isLoading = false;
-      notifyListeners();
-    } else {
-      isLoading = true;
-      // Error
-    }
   }
 }

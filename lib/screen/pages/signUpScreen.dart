@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hypotenuse/constants/ui_helper.dart';
-import 'package:hypotenuse/screen/edit_tab.dart';
+import 'package:hypotenuse/unkown/edit_tab.dart';
 import 'package:hypotenuse/screen/pages/logInScreen.dart';
 import 'package:hypotenuse/viewmodel/register_viewmodel.dart';
 import 'package:hypotenuse/widgets/stepper/blog_step1.dart';

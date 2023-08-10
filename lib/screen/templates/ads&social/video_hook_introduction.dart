@@ -12,58 +12,7 @@ class VideoHookIntroduction extends StatefulWidget {
 }
 
 class _VideoHookIntroductionState extends State<VideoHookIntroduction> {
-  TextEditingController _topicController = TextEditingController();
-  TextEditingController _topicController2 = TextEditingController();
-  TextEditingController _topicController3 = TextEditingController();
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
-
-  TextEditingController _keywordsController = TextEditingController();
-  List<String> videoKeywords = [];
-  void _addInterest(String interest) {
-    setState(() {
-      videoKeywords.add(interest);
-    });
-  }
-
-//tag silinmesi
-  void _removeInterest(String interest) {
-    setState(() {
-      videoKeywords.remove(interest);
-    });
-  }
-//Tone eklenmesi
-
-  List<String> listTone = [
-    "Conversational",
-    "Enthusiatic",
-    "Humorous",
-    "Professional",
-  ];
-  String selectTone = "Conversational";
-
-  bool selectedAnything = false;
-  bool selectedDrafts = false;
-
-  GlobalKey _key = GlobalKey();
-
-  @override
-  void initState() {
-    super.initState();
-    videoKeywords = [];
-    _keywordsController = TextEditingController();
-    _topicController = TextEditingController();
-    _topicController2 = TextEditingController();
-    _topicController3 = TextEditingController();
-  }
-
-  void dispose() {
-    _topicController.dispose();
-    _topicController2.dispose();
-    _topicController3.dispose();
-    _keywordsController.dispose();
-    super.dispose();
-  }
-
+ Vide
   @override
   Widget build(BuildContext context) {
     return SafeArea(
