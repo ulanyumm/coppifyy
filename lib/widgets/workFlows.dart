@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hypotenuse/constants/ui_helper.dart';
 import 'package:hypotenuse/constants/degiskenler.dart';
 
 class WorkflowsTab extends StatefulWidget {
@@ -71,13 +69,13 @@ class _WorkflowsTabState extends State<WorkflowsTab> {
     });
   }
 
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   void _scrollToIndex(int index) {
     if (_scrollController.hasClients) {
       _scrollController.animateTo(
         index * 100.0,
-        duration: Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
       );
     }
@@ -101,10 +99,10 @@ class _WorkflowsTabState extends State<WorkflowsTab> {
             children: [
               Text(
                 Sabitler.titles[0],
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 14, color: Color.fromARGB(255, 55, 40, 248)),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
               SvgPicture.asset(
@@ -113,7 +111,7 @@ class _WorkflowsTabState extends State<WorkflowsTab> {
             ],
           ),
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         TextButton(
           onPressed: () {
             _onPressed2();
@@ -124,11 +122,11 @@ class _WorkflowsTabState extends State<WorkflowsTab> {
           ),
           child: Text(
             Sabitler.titles[1],
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 14, color: Color.fromARGB(255, 55, 40, 248)),
           ),
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         TextButton(
             onPressed: () {
               _onPressed3();
@@ -139,10 +137,10 @@ class _WorkflowsTabState extends State<WorkflowsTab> {
             ),
             child: Text(
               Sabitler.titles[2],
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 14, color: Color.fromARGB(255, 55, 40, 248)),
             )),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         TextButton(
             onPressed: () {
               _onPressed4();
@@ -153,10 +151,10 @@ class _WorkflowsTabState extends State<WorkflowsTab> {
             ),
             child: Text(
               Sabitler.titles[3],
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 14, color: Color.fromARGB(255, 55, 40, 248)),
             )),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         TextButton(
             onPressed: () {
               _onPressed5();
@@ -167,7 +165,7 @@ class _WorkflowsTabState extends State<WorkflowsTab> {
             ),
             child: Text(
               Sabitler.titles[4],
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 14, color: Color.fromARGB(255, 55, 40, 248)),
             )),
       ]),

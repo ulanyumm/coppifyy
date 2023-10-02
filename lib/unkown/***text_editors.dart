@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 
@@ -9,14 +8,14 @@ class TextEditors extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    QuillController _controller = QuillController.basic();
+    QuillController controller = QuillController.basic();
 
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 20),
+              margin: const EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 20),
               width: MediaQuery.of(context).size.width,
               height: 80,
               decoration: const BoxDecoration(
@@ -28,7 +27,7 @@ class TextEditors extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 0),
               child: QuillToolbar.basic(
-                controller: _controller,
+                controller: controller,
                 fontSizeValues: const {
                   'Small': '7',
                   'Medium': '20.5',
@@ -55,7 +54,7 @@ class TextEditors extends StatelessWidget {
                       spreadRadius: 0.0)
                 ]),
                 child:
-                    QuillEditor.basic(controller: _controller, readOnly: false),
+                    QuillEditor.basic(controller: controller, readOnly: false),
               ),
             )
           ],

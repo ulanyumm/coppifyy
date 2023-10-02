@@ -16,15 +16,15 @@ class LoginModel {
   LoginModel.fromJson(Map<String, dynamic> json) {
     result = json['result'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['result'] = this.result;
-    data['message'] = this.message;
-    data['email'] = this.email;
-    data['password'] = this.password;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['result'] = result;
+    data['message'] = message;
+    data['email'] = email;
+    data['password'] = password;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -39,17 +39,17 @@ class Data {
   Data({this.user, this.token});
 
   Data.fromJson(Map<String, dynamic> json) {
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
-    token = json['token'] != null ? new Token.fromJson(json['token']) : null;
+    user = json['user'] != null ? User.fromJson(json['user']) : null;
+    token = json['token'] != null ? Token.fromJson(json['token']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.user != null) {
-      data['user'] = this.user!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (user != null) {
+      data['user'] = user!.toJson();
     }
-    if (this.token != null) {
-      data['token'] = this.token!.toJson();
+    if (token != null) {
+      data['token'] = token!.toJson();
     }
     return data;
   }
@@ -90,16 +90,16 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['email'] = this.email;
-    data['firstName'] = this.firstName;
-    data['lastName'] = this.lastName;
-    data['picture'] = this.picture;
-    data['emailVerified'] = this.emailVerified;
-    data['inputLanguageId'] = this.inputLanguageId;
-    data['outputLanguageId'] = this.outputLanguageId;
-    data['credit'] = this.credit;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['email'] = email;
+    data['firstName'] = firstName;
+    data['lastName'] = lastName;
+    data['picture'] = picture;
+    data['emailVerified'] = emailVerified;
+    data['inputLanguageId'] = inputLanguageId;
+    data['outputLanguageId'] = outputLanguageId;
+    data['credit'] = credit;
     return data;
   }
 }
@@ -116,9 +116,9 @@ class Token {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['code'] = this.code;
-    data['expires_in'] = this.expiresIn;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['code'] = code;
+    data['expires_in'] = expiresIn;
     return data;
   }
 }

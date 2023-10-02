@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DropdownButtons extends StatefulWidget {
@@ -9,7 +8,7 @@ class DropdownButtons extends StatefulWidget {
 }
 
 class _DropdownButtonsState extends State<DropdownButtons> {
-  List<dynamic> _items = [
+  final List<dynamic> _items = [
     'Personal',
     'Small team',
     'Agency',
@@ -45,8 +44,8 @@ class _DropdownButtonsState extends State<DropdownButtons> {
                 .map<DropdownMenuItem<String>>(
                   (e) => DropdownMenuItem(
                     value: e,
-                    child: Text(e),
                     alignment: Alignment.centerLeft,
+                    child: Text(e),
                   ),
                 )
                 .toList(),

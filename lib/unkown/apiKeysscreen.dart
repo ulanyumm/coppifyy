@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -16,84 +15,84 @@ class _ApiKeysScreenState extends State<ApiKeysScreen> {
         body: SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.only(left: 40, right: 40),
-        child: Container(
+        child: SizedBox(
           height: 1000,
           width: double.infinity,
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Center(
                   child: SvgPicture.asset('assets/images/icons/premiumKeys.svg',
                       height: 250),
                 ),
-                Text(
+                const Text(
                     'With our simple API, seamlessly import product information and export product descriptions for your PDP.',
                     style: TextStyle(
                       fontSize: 23,
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 SvgPicture.asset('assets/images/icons/seamlessIntegration.svg',
                     height: 35),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
-                Text('Seamless Integration',
+                const Text('Seamless Integration',
                     style:
                         TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
-                Text(
+                const Text(
                   'A simple REST API that allows you to integrate quickly and easily. Detailed documentation and hands-on support will make connecting with our platform a breeze.',
                   style: TextStyle(fontSize: 15),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 SvgPicture.asset('assets/images/icons/empireCatalogs.svg',
                     height: 35),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
-                Text('Import entire catalogs',
+                const Text('Import entire catalogs',
                     style:
                         TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
-                Text(
+                const Text(
                   'Make use of bulk operations and send all your product information over at once. We retain your original formatting to maximize your time saved.',
                   style: TextStyle(fontSize: 15),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 SvgPicture.asset('assets/images/icons/customizableOptions.svg',
                     height: 35),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
-                Text('Customizable options',
+                const Text('Customizable options',
                     style:
                         TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
-                Text(
+                const Text(
                   'Take fine-grained control of your product data and the kind of tone, style and structure of the product descriptions you want generated..',
                   style: TextStyle(fontSize: 15),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(children: [
-                  Container(
+                  SizedBox(
                     width: 110,
                     child: ElevatedButton(
                         style: ButtonStyle(
@@ -101,21 +100,21 @@ class _ApiKeysScreenState extends State<ApiKeysScreen> {
                                 MaterialStatePropertyAll(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
                             )),
-                            elevation: MaterialStatePropertyAll(0),
-                            side: MaterialStatePropertyAll(
+                            elevation: const MaterialStatePropertyAll(0),
+                            side: const MaterialStatePropertyAll(
                               BorderSide(color: Colors.grey),
                             ),
-                            backgroundColor: MaterialStatePropertyAll(
+                            backgroundColor: const MaterialStatePropertyAll(
                               Color.fromARGB(255, 255, 255, 255),
                             )),
                         onPressed: () => Navigator.pop(context),
-                        child: Text(
+                        child: const Text(
                           'View docs',
                           style: TextStyle(color: Colors.black),
                         )),
                   ),
-                  SizedBox(width: 10),
-                  Container(
+                  const SizedBox(width: 10),
+                  SizedBox(
                     width: 110,
                     child: ElevatedButton(
                         style: ButtonStyle(
@@ -123,16 +122,16 @@ class _ApiKeysScreenState extends State<ApiKeysScreen> {
                                 MaterialStatePropertyAll(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
                             )),
-                            backgroundColor: MaterialStatePropertyAll(
+                            backgroundColor: const MaterialStatePropertyAll(
                               Colors.indigo,
                             )),
                         onPressed: () {},
-                        child: Text(
+                        child: const Text(
                           'Contact us',
                         )),
                   )
                 ]),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
               ]),

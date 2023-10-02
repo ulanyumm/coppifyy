@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hypotenuse/unkown/startscreen22.dart';
 import 'package:hypotenuse/widgets/drawerMenu.dart';
@@ -17,20 +16,21 @@ class _StartScreenState extends State<StartScreen> {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
-    GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+    GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
     double height = MediaQuery.of(context).size.height;
     return Stack(
       children: [
         Scaffold(
-            key: _scaffoldKey,
-            drawer: DrawerMenu(),
+            key: scaffoldKey,
+            drawer: const DrawerMenu(),
             floatingActionButton: FloatingActionButton(
-              child: Icon(Icons.menu),
-              backgroundColor: Color.fromARGB(255, 76, 97, 220),
+              backgroundColor: const Color.fromARGB(255, 76, 97, 220),
               onPressed: () {
-                _scaffoldKey.currentState!.openDrawer();
+                scaffoldKey.currentState!.openDrawer();
               },
+              child: const Icon(Icons.menu),
             ),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.startFloat,
@@ -40,13 +40,13 @@ class _StartScreenState extends State<StartScreen> {
                 SizedBox(
                   height: height * 0.1,
                 ),
-                Text('Welcome to Copify AI',
+                const Text('Welcome to Copify AI',
                     style:
                         TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 SizedBox(
                   height: height * 0.02,
                 ),
-                Text(
+                const Text(
                   'To start, tell us a bit about you.',
                   textAlign: TextAlign.center,
                 ),
@@ -72,8 +72,8 @@ class _StartScreenState extends State<StartScreen> {
                 SizedBox(
                   height: height * 0.02,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 130),
+                const Padding(
+                  padding: EdgeInsets.only(right: 130),
                   child: Text(
                     'What kind of work do you do?',
                   ),
@@ -81,7 +81,7 @@ class _StartScreenState extends State<StartScreen> {
                 SizedBox(
                   height: height * 0.01,
                 ),
-                DropdownButtons(),
+                const DropdownButtons(),
                 SizedBox(
                   height: height * 0.1,
                 ),
@@ -91,7 +91,7 @@ class _StartScreenState extends State<StartScreen> {
                   child: ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(
-                            Color.fromARGB(255, 76, 97, 220)),
+                            const Color.fromARGB(255, 76, 97, 220)),
                         elevation: MaterialStateProperty.all(0),
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -102,7 +102,7 @@ class _StartScreenState extends State<StartScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => StartScreen22()),
+                            builder: (context) => const StartScreen22()),
                       );
                     },
                     child: Text(

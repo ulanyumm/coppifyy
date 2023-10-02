@@ -1,5 +1,7 @@
-class Sabitler {
-  Sabitler._();
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class Sabitler extends ChangeNotifier {
   static final List<String> titles = [
     'Workflows',
     'General',

@@ -11,7 +11,7 @@ class ProfileButton extends StatefulWidget {
 class _ProfileButtonState extends State<ProfileButton> {
   @override
   Widget build(BuildContext context) {
-    return Wrap(children: [
+    return const Wrap(children: [
       Initicon(
         backgroundColor: Color.fromARGB(255, 104, 113, 213),
         text: "Default",

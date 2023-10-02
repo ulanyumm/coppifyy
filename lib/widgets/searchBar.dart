@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class searchBar extends StatelessWidget {
@@ -8,7 +7,7 @@ class searchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       height: 35,
       child: TextField(
         cursorColor: Colors.grey,

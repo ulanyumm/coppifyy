@@ -13,13 +13,13 @@ class TrialCard extends StatelessWidget {
         decoration: BoxDecoration(
             border: Border.all(color: Colors.blueAccent),
             borderRadius: BorderRadius.circular(10)),
-        child: Column(
+        child: const Column(
           children: [
             SizedBox(
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0),
               child: Row(children: [
                 Icon(
                   Icons.timer,
@@ -31,14 +31,14 @@ class TrialCard extends StatelessWidget {
               ]),
             ),
             Padding(
-              padding: const EdgeInsets.only(
+              padding: EdgeInsets.only(
                 left: 35,
                 right: 20,
               ),
               child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(5.0),
+                    padding: EdgeInsets.all(5.0),
                     child: Text(
                       'To continune generating content,\n subscribe to plan.',
                       style: TextStyle(
@@ -54,7 +54,7 @@ class TrialCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 35, right: 20),
+              padding: EdgeInsets.only(left: 35, right: 20),
               child: SizedBox(
                   height: 35,
                   width: double.infinity,

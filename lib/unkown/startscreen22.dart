@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hypotenuse/screen/dashboardScreen.dart';
@@ -21,22 +20,22 @@ class _StartScreen22State extends State<StartScreen22> {
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Text(
+              const Text(
                 'What would you like to do \n first?',
                 style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Text(
+              const Text(
                 "We'll help you get started faster.",
                 style: TextStyle(fontSize: 17),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Material(
@@ -70,10 +69,10 @@ class _StartScreen22State extends State<StartScreen22> {
                                 "assets/images/icons/catalog.svg",
                                 height: 100,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
-                              Column(
+                              const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
@@ -101,7 +100,7 @@ class _StartScreen22State extends State<StartScreen22> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Material(
@@ -135,10 +134,10 @@ class _StartScreen22State extends State<StartScreen22> {
                                     "assets/images/icons/product-descriptions.svg",
                                     height: 90,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
-                                  Column(
+                                  const Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
@@ -164,7 +163,7 @@ class _StartScreen22State extends State<StartScreen22> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Material(
@@ -198,10 +197,10 @@ class _StartScreen22State extends State<StartScreen22> {
                                 "assets/images/icons/hypo-chat.svg",
                                 height: 100,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
-                              Column(
+                              const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
@@ -229,7 +228,7 @@ class _StartScreen22State extends State<StartScreen22> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Material(
@@ -263,10 +262,10 @@ class _StartScreen22State extends State<StartScreen22> {
                                 "assets/images/icons/image-generation.svg",
                                 height: 100,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
-                              Column(
+                              const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
@@ -294,7 +293,7 @@ class _StartScreen22State extends State<StartScreen22> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Material(
@@ -328,10 +327,10 @@ class _StartScreen22State extends State<StartScreen22> {
                                 "assets/images/icons/ads-descriptions.svg",
                                 height: 100,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
-                              Column(
+                              const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
@@ -359,7 +358,7 @@ class _StartScreen22State extends State<StartScreen22> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               SizedBox(
@@ -369,9 +368,9 @@ class _StartScreen22State extends State<StartScreen22> {
                   style: ButtonStyle(
                       backgroundColor: isChecked == false
                           ? MaterialStateProperty.all(
-                              Color.fromARGB(255, 187, 187, 191))
+                              const Color.fromARGB(255, 187, 187, 191))
                           : MaterialStateProperty.all(
-                              Color.fromARGB(255, 104, 113, 213)),
+                              const Color.fromARGB(255, 104, 113, 213)),
                       elevation: MaterialStateProperty.all(0),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
@@ -386,13 +385,13 @@ class _StartScreen22State extends State<StartScreen22> {
                           );
                         }
                       : null,
-                  child: Text(
+                  child: const Text(
                     'Continue',
                     style: TextStyle(fontSize: 14),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               )
             ],

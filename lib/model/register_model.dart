@@ -1,36 +1,32 @@
 class RegisterModel {
   bool? result;
-  String? message;
-  String? email;
-  String? firstname;
-  String? lastname;
-  String? password;
   Data? data;
+  String? email;
+  String? password;
+  String? firstName;
+  String? lastName;
 
   RegisterModel({
     this.result,
-    this.message,
-    this.email,
-    this.firstname,
-    this.lastname,
-    this.password,
     this.data,
+    this.email,
+    this.password,
+    this.firstName,
+    this.lastName,
   });
 
   RegisterModel.fromJson(Map<String, dynamic> json) {
     result = json['result'];
-    message = json['message'];
+    email = json['email'];
+    password = json['password'];
+    firstName = json['firstName'];
+    lastName = json['lastName'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['result'] = this.result;
-    data['message'] = this.message;
-    data['email'] = this.email;
-    data['password'] = this.password;
-    data['firstName'] = this.firstname;
-    data['lastName'] = this.lastname;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -66,7 +62,7 @@ class User {
   String? email;
   String? firstName;
   String? lastName;
-  Null? picture;
+  String? picture;
   bool? emailVerified;
   int? inputLanguageId;
   int? outputLanguageId;

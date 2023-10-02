@@ -1,9 +1,4 @@
-import 'package:buttons_tabbar/buttons_tabbar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hypotenuse/widgets/answers/instagramPost/captions_edit.dart';
-import 'package:hypotenuse/widgets/answers/instagramPost/captions_preview.dart';
-import 'package:hypotenuse/unkown/editTabBarView.dart';
 
 class EditorTabBar extends StatefulWidget {
   const EditorTabBar({super.key});
@@ -32,10 +27,10 @@ class _EditorTabBarState extends State<EditorTabBar> {
                       borderRadius: BorderRadius.circular(
                         12.0,
                       ),
-                      color: Color.fromARGB(255, 217, 218, 219),
+                      color: const Color.fromARGB(255, 217, 218, 219),
                     ),
                     isScrollable: true,
-                    tabs: [
+                    tabs: const [
                       Tab(
                           child: Text(
                         'Edit',
@@ -51,18 +46,18 @@ class _EditorTabBarState extends State<EditorTabBar> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Icon(Icons.refresh, color: Colors.red),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
+                      const Icon(Icons.refresh, color: Colors.red),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: Text(
                           'Reset All',
                           style: TextStyle(color: Colors.red),
                         ),
                       ),
                       Container(
-                        color: Color.fromARGB(255, 203, 199, 199),
+                        color: const Color.fromARGB(255, 203, 199, 199),
                         width: 15,
-                        child: Center(child: Text('5')),
+                        child: const Center(child: Text('5')),
                       ),
                     ],
                   ),

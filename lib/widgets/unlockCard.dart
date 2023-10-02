@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class UnlockCard extends StatelessWidget {
@@ -15,11 +14,11 @@ class UnlockCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(10)),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Row(children: [
                 Icon(
                   Icons.bolt_outlined,
@@ -30,15 +29,15 @@ class UnlockCard extends StatelessWidget {
                         fontSize: 18, color: Color.fromARGB(255, 76, 97, 220))),
               ]),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
+            const Padding(
+              padding: EdgeInsets.only(
                 left: 35,
                 right: 20,
               ),
               child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(5.0),
+                    padding: EdgeInsets.all(5.0),
                     child: Text(
                       'Subscribe to a plan to get creditds \nand continue generating content \nwith AI.',
                       style: TextStyle(
@@ -64,7 +63,7 @@ class UnlockCard extends StatelessWidget {
                               const Color.fromARGB(255, 216, 211, 211),
                         ),
                         onPressed: () {},
-                        child: Text('Upgrade now',
+                        child: const Text('Upgrade now',
                             style: TextStyle(color: Colors.indigo)))))
           ],
         ));

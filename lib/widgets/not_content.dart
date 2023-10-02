@@ -9,7 +9,7 @@ class NoContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: MediaQuery.of(context).size.height / 3,
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [

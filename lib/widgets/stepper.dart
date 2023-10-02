@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -52,6 +51,7 @@ class _SteppersState extends State<Steppers> {
     _topicController = TextEditingController();
   }
 
+  @override
   void dispose() {
     _topicController.dispose();
     _keywordsController.dispose();
@@ -63,7 +63,7 @@ class _SteppersState extends State<Steppers> {
     return Scaffold(
         body: SingleChildScrollView(
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(
+        const Row(
           children: [
             Text(
               'Describe yotu topic *',
@@ -75,14 +75,14 @@ class _SteppersState extends State<Steppers> {
             setState(() {});
           },
           controller: _topicController,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             border: OutlineInputBorder(),
           ),
           keyboardType: TextInputType.multiline,
           maxLines: 5,
         ),
-        SizedBox(height: 20),
-        Row(
+        const SizedBox(height: 20),
+        const Row(
           children: [
             Text(
               'Primary keywords *',
@@ -95,7 +95,7 @@ class _SteppersState extends State<Steppers> {
             const SizedBox(height: 16),
             TextField(
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 hintText: 'best writting tools',
                 suffixIcon: IconButton(
                   icon: const Icon(Icons.add_circle_outline),
@@ -119,10 +119,10 @@ class _SteppersState extends State<Steppers> {
             const SizedBox(height: 16),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
-        Row(
+        const Row(
           children: [
             Text(
               'Tone',
@@ -157,8 +157,8 @@ class _SteppersState extends State<Steppers> {
             }).toList(),
           ),
         ),
-        SizedBox(height: 20),
-        SizedBox(
+        const SizedBox(height: 20),
+        const SizedBox(
           height: 20,
         ),
         GestureDetector(
@@ -169,12 +169,12 @@ class _SteppersState extends State<Steppers> {
           },
           child: Row(
             children: [
-              Text('More options', style: TextStyle()),
+              const Text('More options', style: TextStyle()),
               IconButton(
                 onPressed: () {},
                 icon: selectedDrafts
-                    ? Icon(Icons.keyboard_arrow_down)
-                    : Icon(Icons.keyboard_arrow_up),
+                    ? const Icon(Icons.keyboard_arrow_down)
+                    : const Icon(Icons.keyboard_arrow_up),
               ),
             ],
           ),
@@ -189,13 +189,13 @@ class _SteppersState extends State<Steppers> {
             children: [
               Row(children: [
                 Expanded(
-                  child: Container(
+                  child: SizedBox(
                     height: 50,
                     child: ElevatedButton(
                         style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
                           selectedContainerIndex == 0
-                              ? Color.fromARGB(255, 217, 221, 229)
+                              ? const Color.fromARGB(255, 217, 221, 229)
                               : Colors.grey,
                         )),
                         onPressed: () {
@@ -204,7 +204,7 @@ class _SteppersState extends State<Steppers> {
                             isChecked = true;
                           });
                         },
-                        child: Text(
+                        child: const Text(
                           'First Person',
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.black),
@@ -212,13 +212,13 @@ class _SteppersState extends State<Steppers> {
                   ),
                 ),
                 Expanded(
-                  child: Container(
+                  child: SizedBox(
                     height: 50,
                     child: ElevatedButton(
                         style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
                           selectedContainerIndex == 1
-                              ? Color.fromARGB(255, 217, 221, 229)
+                              ? const Color.fromARGB(255, 217, 221, 229)
                               : Colors.grey,
                         )),
                         onPressed: () {
@@ -227,7 +227,7 @@ class _SteppersState extends State<Steppers> {
                             isChecked = true;
                           });
                         },
-                        child: Text(
+                        child: const Text(
                           'Second Person',
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.black),
@@ -235,13 +235,13 @@ class _SteppersState extends State<Steppers> {
                   ),
                 ),
                 Expanded(
-                  child: Container(
+                  child: SizedBox(
                     height: 50,
                     child: ElevatedButton(
                         style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
                           selectedContainerIndex == 2
-                              ? Color.fromARGB(255, 217, 221, 229)
+                              ? const Color.fromARGB(255, 217, 221, 229)
                               : Colors.grey,
                         )),
                         onPressed: () {
@@ -250,7 +250,7 @@ class _SteppersState extends State<Steppers> {
                             isChecked = true;
                           });
                         },
-                        child: Text(
+                        child: const Text(
                           'Third Person',
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.black),
@@ -258,10 +258,10 @@ class _SteppersState extends State<Steppers> {
                   ),
                 )
               ]),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Text('Describe your audience'),
+              const Text('Describe your audience'),
               TextField(
                 onChanged: (value) {
                   setState(() {});
@@ -271,13 +271,13 @@ class _SteppersState extends State<Steppers> {
                 minLines: 1,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Color.fromARGB(
+                  fillColor: const Color.fromARGB(
                     255,
                     255,
                     255,
                     255,
                   ),
-                  labelStyle: TextStyle(fontSize: 13),
+                  labelStyle: const TextStyle(fontSize: 13),
                   hintText: 'The Rock Company',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
@@ -289,7 +289,7 @@ class _SteppersState extends State<Steppers> {
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Container(
@@ -301,7 +301,7 @@ class _SteppersState extends State<Steppers> {
             ),
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 102, 117, 198),
+                    backgroundColor: const Color.fromARGB(255, 102, 117, 198),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     )),
@@ -309,13 +309,13 @@ class _SteppersState extends State<Steppers> {
                         _keywordsController.text.isEmpty
                     ? null
                     : () {},
-                child: Text('Generate Titles'))),
-        SizedBox(height: 10),
-        Container(
+                child: const Text('Generate Titles'))),
+        const SizedBox(height: 10),
+        SizedBox(
           width: double.infinity,
           height: 600,
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Container(
+            SizedBox(
               height: 400,
               width: 200,
               child: Column(children: [
@@ -323,12 +323,12 @@ class _SteppersState extends State<Steppers> {
                   'assets/images/icons/blog-title-placeholder.svg',
                   width: 100,
                 ),
-                SizedBox(height: 10),
-                Text('No titles generated',
+                const SizedBox(height: 10),
+                const Text('No titles generated',
                     style:
                         TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-                SizedBox(height: 10),
-                Text(
+                const SizedBox(height: 10),
+                const Text(
                   'Describle your topic to our AI to start generating creative article ideas and titles.',
                   textAlign: TextAlign.center,
                 )

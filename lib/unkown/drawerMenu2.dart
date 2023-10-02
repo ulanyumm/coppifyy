@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hypotenuse/screen/dashboardScreen.dart';
-import 'package:hypotenuse/screen/integrations.dart';
-import 'package:hypotenuse/screen/plansAndPricing.dart';
-import 'package:hypotenuse/screen/profileScreen.dart';
-import 'package:hypotenuse/screen/referAUserScreen.dart';
+import 'package:hypotenuse/unkown/integrations.dart';
+import 'package:hypotenuse/widgets/plansAndPricing/plansAndPricing.dart';
+import 'package:hypotenuse/unkown/referAUserScreen.dart';
+import 'package:hypotenuse/screen/settingsScreen.dart';
 import 'package:hypotenuse/widgets/profileButton.dart';
 
 class DrawerMenu2 extends StatelessWidget {
@@ -14,99 +13,98 @@ class DrawerMenu2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Drawer(
-          child: ListView(padding: EdgeInsets.only(top: 40), children: <Widget>[
-        Text(
+          child: ListView(padding: const EdgeInsets.only(top: 40), children: <Widget>[
+        const Text(
           "Copify AI",
           style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
         ListTile(
-          leading: CircleAvatar(
+          leading: const CircleAvatar(
             child: Icon(Icons.home),
           ),
-          title: Text("Home"),
+          title: const Text("Home"),
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => DashboardScreen()));
+                MaterialPageRoute(builder: (context) => const DashboardScreen()));
           },
         ),
-        Text('Account',
+        const Text('Account',
             style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
         ListTile(
-          leading: CircleAvatar(
+          leading: const CircleAvatar(
             child: Icon(Icons.menu_book),
           ),
-          title: Text("Profile"),
+          title: const Text("Profile"),
           onTap: () {},
         ),
         ListTile(
-          leading: CircleAvatar(
+          leading: const CircleAvatar(
             child: Icon(Icons.description),
           ),
-          title: Text("Plans and Pricing"),
+          title: const Text("Plans and Pricing"),
           onTap: () {},
         ),
         ListTile(
-          leading: CircleAvatar(
+          leading: const CircleAvatar(
             child: Icon(Icons.book_rounded),
           ),
-          title: Text("Integrations"),
+          title: const Text("Integrations"),
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => IntegrationsScreen()),
+              MaterialPageRoute(builder: (context) => const IntegrationsScreen()),
             );
           },
         ),
-        Text('Account',
+        const Text('Account',
             style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
         ListTile(
-          trailing: Icon(Icons.lock_clock),
-          leading: CircleAvatar(
+          trailing: const Icon(Icons.lock_clock),
+          leading: const CircleAvatar(
             child: Icon(Icons.person_2_sharp),
           ),
-          title: Text("Members"),
+          title: const Text("Members"),
           onTap: () {},
         ),
-        SizedBox(
+        const SizedBox(
           height: 70,
         ),
         ListTile(
-          leading: CircleAvatar(
+          leading: const CircleAvatar(
             child: Icon(Icons.circle),
           ),
-          title: Text("15 Credits"),
+          title: const Text("15 Credits"),
           onTap: () {},
         ),
         ListTile(
-          leading: CircleAvatar(
+          leading: const CircleAvatar(
             child: Icon(Icons.settings),
           ),
-          title: Text("Settings"),
+          title: const Text("Settings"),
           onTap: () {},
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         ExpansionTile(
-          leading: ProfileButton(),
-          title: Text("Default"),
-          trailing: Icon(
+          leading: const ProfileButton(),
+          title: const Text("Default"),
+          trailing: const Icon(
             Icons.arrow_drop_down,
           ),
           children: [
             ListTile(
-              leading: Icon(Icons.flag),
-              title: Text('Profile'),
+              leading: const Icon(Icons.flag),
+              title: const Text('Profile'),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const ProfileScreen()),
+                  MaterialPageRoute(builder: (context) => const SettingsScreen()),
                 );
               },
             ),
             ListTile(
-                leading: Icon(Icons.graphic_eq),
-                title: Text('Plans & Pricing'),
+                leading: const Icon(Icons.graphic_eq),
+                title: const Text('Plans & Pricing'),
                 onTap: () {
                   Navigator.push(
                       context,
@@ -115,8 +113,8 @@ class DrawerMenu2 extends StatelessWidget {
                       ));
                 }),
             ListTile(
-              leading: Icon(Icons.man),
-              title: Text('Refer a User'),
+              leading: const Icon(Icons.man),
+              title: const Text('Refer a User'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -125,7 +123,7 @@ class DrawerMenu2 extends StatelessWidget {
                 );
               },
             ),
-            ListTile(
+            const ListTile(
               leading: Icon(Icons.outbond),
               title: Text('Sign Out'),
             )

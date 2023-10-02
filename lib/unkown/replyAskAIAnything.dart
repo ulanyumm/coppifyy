@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ReplyAskAIAnyThing extends StatefulWidget {
@@ -9,7 +8,7 @@ class ReplyAskAIAnyThing extends StatefulWidget {
 }
 
 class _ReplyAskAIAnyThingState extends State<ReplyAskAIAnyThing> {
-  TextEditingController _topicController = TextEditingController();
+  final TextEditingController _topicController = TextEditingController();
   bool selectedDrafts = false;
   bool selectedAnything = false;
 
@@ -17,7 +16,7 @@ class _ReplyAskAIAnyThingState extends State<ReplyAskAIAnyThing> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color.fromARGB(246, 249, 245, 245),
+        backgroundColor: const Color.fromARGB(246, 249, 245, 245),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -30,10 +29,10 @@ class _ReplyAskAIAnyThingState extends State<ReplyAskAIAnyThing> {
                       });
                     },
                     icon: selectedDrafts
-                        ? Icon(Icons.keyboard_arrow_down)
-                        : Icon(Icons.keyboard_arrow_right),
+                        ? const Icon(Icons.keyboard_arrow_down)
+                        : const Icon(Icons.keyboard_arrow_right),
                   ),
-                  Text('Drafts',
+                  const Text('Drafts',
                       style:
                           TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
                 ],
@@ -41,7 +40,7 @@ class _ReplyAskAIAnyThingState extends State<ReplyAskAIAnyThing> {
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: AnimatedContainer(
-                    color: Color.fromARGB(255, 255, 255, 255),
+                    color: const Color.fromARGB(255, 255, 255, 255),
                     width: double.infinity,
                     height:
                         selectedDrafts ? MediaQuery.of(context).size.height : 0,
@@ -57,14 +56,14 @@ class _ReplyAskAIAnyThingState extends State<ReplyAskAIAnyThing> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 height: 30,
                               ),
-                              Text('Ask AI anything 1',
+                              const Text('Ask AI anything 1',
                                   style: TextStyle(
                                       fontSize: 17,
                                       fontWeight: FontWeight.bold)),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -81,13 +80,13 @@ class _ReplyAskAIAnyThingState extends State<ReplyAskAIAnyThing> {
                                     borderRadius: BorderRadius.circular(25.0),
                                   ),
                                   filled: true,
-                                  fillColor: Color.fromARGB(
+                                  fillColor: const Color.fromARGB(
                                     255,
                                     255,
                                     255,
                                     255,
                                   ),
-                                  labelStyle: TextStyle(fontSize: 13),
+                                  labelStyle: const TextStyle(fontSize: 13),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8),
                                   ),
@@ -95,10 +94,10 @@ class _ReplyAskAIAnyThingState extends State<ReplyAskAIAnyThing> {
                                 keyboardType: TextInputType.multiline,
                                 maxLines: null,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                             ],

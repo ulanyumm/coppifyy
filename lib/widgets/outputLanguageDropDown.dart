@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class OutputDropdownButtons extends StatefulWidget {
@@ -9,7 +8,7 @@ class OutputDropdownButtons extends StatefulWidget {
 }
 
 class _OutputDropdownButtonsState extends State<OutputDropdownButtons> {
-  List<dynamic> _items = [
+  final List<dynamic> _items = [
     'Bulgarian',
     'Chinese(Simplified)',
     'Chinese(Traditional)',
@@ -76,8 +75,8 @@ class _OutputDropdownButtonsState extends State<OutputDropdownButtons> {
                 .map<DropdownMenuItem<String>>(
                   (e) => DropdownMenuItem(
                     value: e,
-                    child: Text(e),
                     alignment: Alignment.centerLeft,
+                    child: Text(e),
                   ),
                 )
                 .toList(),
